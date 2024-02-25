@@ -1,0 +1,122 @@
+class Shape {
+  color = "";
+  filled = true;
+  constructor(color, filled) {
+    this.color = color;
+    this.filled = filled;
+  }
+  getColor() {
+    return this.color;
+  }
+  setColor(color) {
+    this.color = color;
+  }
+  isFilled() {
+    return this.filled;
+  }
+  setFilled(filled) {
+    this.filled = filled;
+  }
+  toString() {
+    return `Shape[color = ${this.color}, 
+            filled = ${this.filled}]`;
+  }
+}
+
+class Circle extends Shape {
+  radius = 1.0;
+  constructor(radius = 1.0, color,filled) {
+    super(color, filled);
+    this.radius = radius;
+  }
+  getRadius() {
+    return this.radius;
+  }
+  setRadius(radius) {
+    this.radius = radius;
+  }
+  getArea() {
+    return 3.14 * this.radius * this.radius;
+  }
+  getPerimeter() {
+    return 2 * 3.14 * this.radius;
+  }
+  toString() {
+    return `Circle[${Shape.toString()},
+      radius = $ ${this.radius}]`;
+  }
+}
+
+class Rectangle extends Shape{
+  width = 1.0;
+  length = 1.0;
+  constructor(width =1.0, length =1.0, color, filled) {
+    super(color,filled);
+    this.width = width;
+    this.length = length;
+  }
+  getWidth() {
+    return this.width;
+  }
+  setWidth(width) {
+    this.width = width;
+  }
+  getLength() {
+    return this.length;
+  }
+  setLength(length) {
+    this.length = length;
+  }
+  getArea() {
+    return this.width * this.length;
+  }
+  getPerimeter() {
+    return 2 * this.length + 2 * this.width;
+  }
+  toString() {
+    return `Rectangle[${super.toString()},
+      width = ${this.width},
+      length = ${this.length}
+    ]`;
+  }
+}
+class Square extends Shape {
+  side = 1.0;
+  constructor(side = 1.0, width, length, color, filled) {
+    super(width, length, color, filled);
+    this.side = side;
+  }
+  getSide() {
+    return this.side;
+  }
+  setSide(side) {
+    this.side = side;
+  }
+  setWidth() {
+    this.width = this.side;
+  }
+  setLength() {
+    this.length = this.side;
+  }
+  toString() {
+    return `Square[${super.toString()},
+    width = ${this.width},
+    length = ${this.length}
+    ]`;
+  }
+}
+
+const main = () => {
+  const Shape1 = new Shape ("red", true);
+  const Circle1 = new Circle (1.5, Shape1.color, Shape1.filled);
+  const Rectangle1 = new Rectangle (25, 50, "Blue", true);
+  const Square1  = new Square (10,10,10,"Sky", true);
+
+  console.log(Shape1.toString());
+  console.log("----------------------------------------------");
+  console.log(Circle1.toString());
+  console.log("----------------------------------------------");
+  console.log(Rectangle1.toString());
+  console.log("----------------------------------------------");
+  console.log(Square1.toString());
+}

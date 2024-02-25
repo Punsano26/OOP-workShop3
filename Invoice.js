@@ -1,7 +1,7 @@
 class Customer {
   id = "";
   name = "";
-  discount = "";
+  discount = 0;
   constructor(id, name, discount) {
     this.name = name;
     this.id = id;
@@ -20,11 +20,13 @@ class Customer {
     this.discount = discount;
   }
   toString() {
-    let name = "";
-    return `${this.name}{${this.discount}%}`;
+    return `${this.getName()}($this.getID()})({${this.getDiscount()}%})`;
   }
 }
 class Invoice {
+  id = 0;
+  customer = "";
+  amount = 0;
   constructor(id, customer, amount) {
     this.id = id;
     this.customer = customer;
@@ -55,16 +57,20 @@ class Invoice {
     return this.customer.getDiscount;
   }
   getAmountAfterDiscount() {
-    return this.amount - (this.amount * this.customer.getDiscount()) / 100;
+    let dis = (this.customer.getDiscount() * this.amount) / 100;
+    let amountAfterDiscount = this.amount - dis;
+    return amountAfterDiscount;
   }
   toString() {
-    return ("Invoice [id =" + this.id + ", customer = " + this.customer.toString() + ", amount = " + this.getAmountAfterDiscount() + "]")
+    return `Invoice[id = ${
+      this.id
+    }, customer = ${this.customer.toString()}, amount = ${this.amount}]`;
   }
 }
 
 const main = () => {
   const customer1 = new Customer("01", "Punsan", "200");
-
+  const Invoice1 = new Invoice(1, customer1, 100);
   console.log(customer1.toString());
 };
 main();
