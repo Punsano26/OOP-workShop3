@@ -75,7 +75,7 @@ class Staff extends Person{
         this.pay = pay;
     }
     toString () {
-        return `Staff[$super.toString()}, 
+        return `Staff[${super.toString()}, 
           school = ${this.school}, 
           pay = ${this.pay}]`;
     }
@@ -85,9 +85,9 @@ const main = () => {
   const Person1 = new Person("Thin", "New York");
   const Student1 = new Student("Thin", "New York", "Digital", 2565, 1.5);
   const Staff1 = new Staff("Thin", "New York", "Bosston", 15000.25 );
- console.log(Student1.toString);
+ console.log(Student1.toString());
  
 console.log("/////////////////////////////////////////////////////////");
- console.log(Person1.toString);
+ console.log(Person1.toString());
 }
 main();
