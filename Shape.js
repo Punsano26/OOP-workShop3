@@ -25,7 +25,7 @@ class Shape {
 
 class Circle extends Shape {
   radius = 1.0;
-  constructor(radius = 1.0, color,filled) {
+  constructor(radius = 1.0, color = "red",filled = true) {
     super(color, filled);
     this.radius = radius;
   }
@@ -50,7 +50,7 @@ class Circle extends Shape {
 class Rectangle extends Shape{
   width = 1.0;
   length = 1.0;
-  constructor(width =1.0, length =1.0, color, filled) {
+  constructor(width =1.0, length =1.0, color = "red", filled = true) {
     super(color,filled);
     this.width = width;
     this.length = length;
@@ -80,37 +80,35 @@ class Rectangle extends Shape{
     ]`;
   }
 }
-class Square extends Shape {
-  side = 1.0;
-  constructor(side = 1.0, width, length, color, filled) {
-    super(width, length, color, filled);
-    this.side = side;
+class Square extends Rectangle {
+  constructor(side = 1.0, color = "red", filled = true) {
+    super(side, side, color, filled);
   }
   getSide() {
     return this.side;
   }
   setSide(side) {
-    this.side = side;
+    this.width = side;
+    this.length = side;
   }
-  setWidth() {
-    this.width = this.side;
+  setWidth(side) {
+    this.setSide(side);
   }
-  setLength() {
-    this.length = this.side;
+  setLength(side) {
+    this.setSide(side);
   }
   toString() {
-    return `Square[${super.toString()},
-    width = ${this.width},
-    length = ${this.length}
+    return `Square[${super.toString()}
     ]`;
   }
 }
 
 const main = () => {
   const Shape1 = new Shape ("red", true);
+   const Square1  = new Square (10,10,10,"Sky", true);
   const Circle1 = new Circle (1.5, Shape1.color, Shape1.filled);
   const Rectangle1 = new Rectangle (25, 50, "Blue", true);
-  const Square1  = new Square (10,10,10,"Sky", true);
+ 
 
   console.log(Shape1.toString());
   console.log("----------------------------------------------");
@@ -120,3 +118,4 @@ const main = () => {
   console.log("----------------------------------------------");
   console.log(Square1.toString());
 }
+main();
