@@ -1,8 +1,8 @@
 class Shape {
-  color = "";
+  color = "red";
   filled = true;
   constructor(color, filled) {
-    this.color = color;
+   this.color = color;
     this.filled = filled;
   }
   getColor() {
@@ -105,17 +105,10 @@ class Square extends Rectangle {
 
 const main = () => {
   const Shape1 = new Shape ("red", true);
-   const Square1  = new Square (10,10,10,"Sky", true);
-  const Circle1 = new Circle (1.5, Shape1.color, Shape1.filled);
+   const Square1  = new Square (15, "Blue", true);
+  const Circle1 = new Circle (5.0, Shape1.color, Shape1.filled);
   const Rectangle1 = new Rectangle (25, 50, "Blue", true);
- 
 
-  console.log(Shape1.toString());
-  console.log("----------------------------------------------");
-  console.log(Circle1.toString());
-  console.log("----------------------------------------------");
-  console.log(Rectangle1.toString());
-  console.log("----------------------------------------------");
   console.log(Square1.toString());
 }
 main();

@@ -12,7 +12,6 @@ class Customer {
     return this.member;
   }
   setMember(member) {
-    a;
     this.member = member;
   }
   getMemberType() {
@@ -33,11 +32,9 @@ class Visit {
   date = "";
   serviceExpense = 0;
   productExpense = 0;
-  constructor(customer, date, serviceExpense, productExpense) {
+  constructor(customer, date) {
     this.customer = customer;
     this.date = date;
-    this.serviceExpense = serviceExpense;
-    this.productExpense = productExpense;
   }
   getName() {
     return this.name;
@@ -56,7 +53,17 @@ class Visit {
   }
   getTotalExpense() {
     let total = 0;
-    let ptotal = this.getProductExpense() - DiscountRate.PGOLD;
+    let proTotal =
+      this.getProductExpense() -
+      DiscountRate.getProduceDiscountRate(this.customer.getMemberType()) *
+        this.getProductExpense();
+    let serTotal =
+      this.getServiceExpense() -
+      DiscountRate.getServiceDiscountRate(this.customer.getMemberType()) *
+        this.getServiceExpense();
+
+    total = serTotal + proTotal;
+
     return total;
   }
   toString() {
@@ -73,13 +80,11 @@ class DiscountRate {
   static SPREMIUM = new DiscountRate("premium");
   static SGOLD = new DiscountRate("gold");
   static SSILVER = new DiscountRate("silver");
-  static PPREMIUM = new DiscountRate(0.1);
-  static PGOLD = new DiscountRate(0.1);
-  static PSILVER = new DiscountRate(0.1);
+
   constructor(type) {
     this.type = type;
   }
-  getServiceDiscountRate(type) {
+  static getServiceDiscountRate(type) {
     switch (type) {
       case "premium":
         return 0.2;
@@ -88,11 +93,21 @@ class DiscountRate {
       case "silver":
         return 0.1;
       default:
-        return ;
+        return 0;
     }
   }
-  getDiscountRate() {
-    return this.name;
+
+  static getProduceDiscountRate(type) {
+    switch (type) {
+      case "Premium":
+        return 0.1;
+      case "Gold":
+        return 0.1;
+      case "Silver":
+        return 0.1;
+      default:
+        return 0;
+    }
   }
 }
 
